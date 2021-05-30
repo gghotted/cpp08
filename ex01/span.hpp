@@ -15,19 +15,20 @@ class Span
   Span& operator = (const Span& span);
 
   void addNumber(int n);
+
+  template<typename Iter>
+  void addNumber(Iter _begin, Iter end)
+  {
+    for (Iter begin = _begin; begin != end; begin++)
+      addNumber(*begin);
+  }
+
   int shortestSpan();
   int longestSpan();
 
  private:
   Span();
   static int diff(int a, int b);
-
-  template<typename Iter>
-  void addNumber(Iter& _begin, Iter& end)
-  {
-    for (Iter begin = _begin; begin != end; begin++)
-      addNumber(*begin);
-  }
 
   template<typename InputIt, typename OutputIt, typename Fnc>
   static void myTransform(
