@@ -17,6 +17,15 @@ void testReverseIterator(MutantStack<int>& mstack)
     std::cout << *it << '\n';
 }
 
+void testConstIterator(const MutantStack<int>& mstack)
+{
+  MutantStack<int>::const_iterator cit = mstack.begin();
+  MutantStack<int>::const_iterator cite = mstack.end();
+  // *cit = 42 // error : because cit is const_iterator;
+  for (; cit != cite; cit++)
+    std::cout << *cit << '\n';
+}
+
 int main(int argc, char** argv)
 {
   if (argc != 2)
@@ -29,5 +38,6 @@ int main(int argc, char** argv)
   int testCase = argv[1][0] - '0';
   if (testCase == 0) testIterator(mstack);
   if (testCase == 1) testReverseIterator(mstack);
+  if (testCase == 2) testConstIterator(mstack);
 	return (0);
 }
