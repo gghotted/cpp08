@@ -23,7 +23,7 @@ Span& Span::operator = (const Span& span)
 void Span::addNumber(int n)
 {
   if (numbers.size() == maxSize)
-    throw std::out_of_range("already full");
+    throw AlreadyFullException();
   numbers.insert(n);
 }
 
@@ -34,7 +34,7 @@ Span::Span()
 int Span::shortestSpan()
 {
   if (numbers.size() < 2)
-    throw std::out_of_range("required minimum size is 2");
+    throw NotEnoughSizeException();
   std::set<int> diffs;
   myTransform(
       numbers.begin(), --numbers.end(),
@@ -46,11 +46,21 @@ int Span::shortestSpan()
 int Span::longestSpan()
 {
   if (numbers.size() < 2)
-    throw std::out_of_range("required minimum size is 2");
+    throw NotEnoughSizeException();
   return *--numbers.end() - *numbers.begin();
 }
 
 int Span::diff(int a, int b)
 {
   return (std::abs(a - b));
+}
+
+const char* Span::NotEnoughSizeException::what() const throw()
+{
+  return "not enough size";
+}
+
+const char* Span::AlreadyFullException::what() const throw()
+{
+  return "already full";
 }

@@ -1,8 +1,7 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 
-#include <stdexcept>
-#include <vector>
+#include <exception>
 #include <set>
 
 class Span
@@ -29,6 +28,15 @@ class Span
  private:
   Span();
   static int diff(int a, int b);
+
+  class AlreadyFullException : public std::exception
+  {
+    const char* what() const throw();
+  };
+  class NotEnoughSizeException : public std::exception
+  {
+    const char* what() const throw();
+  };
 
   template<typename InputIt, typename OutputIt, typename Fnc>
   static void myTransform(
