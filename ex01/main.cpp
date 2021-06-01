@@ -83,8 +83,7 @@ void testAssignation()
   span.addNumber(1);
 
   Span span2(2);
-  span2.addNumber(1);
-  span2.addNumber(2);
+  span2.addNumber(1000);
   span2 = span;
   std::cout << span2.longestSpan() << '\n';
   std::cout << span2.shortestSpan() << '\n';
