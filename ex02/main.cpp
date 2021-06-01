@@ -26,6 +26,38 @@ void testConstIterator(const MutantStack<int>& mstack)
     std::cout << *cit << '\n';
 }
 
+void testGivenMain()
+{
+  MutantStack<int> mstack;
+
+  mstack.push(5);
+  mstack.push(17);
+
+  std::cout << mstack.top() << std::endl;
+
+  mstack.pop();
+
+  std::cout << mstack.size() << std::endl;
+
+  mstack.push(3);
+  mstack.push(5);
+  mstack.push(737);
+  //[...]
+  mstack.push(0);
+
+  MutantStack<int>::iterator it = mstack.begin();
+  MutantStack<int>::iterator ite = mstack.end();
+
+  ++it;
+  --it;
+  while (it != ite)
+  {
+    std::cout << *it << std::endl;
+    ++it;
+  }
+  std::stack<int> s(mstack);
+}
+
 int main(int argc, char** argv)
 {
   if (argc != 2)
@@ -39,5 +71,6 @@ int main(int argc, char** argv)
   if (testCase == 0) testIterator(mstack);
   if (testCase == 1) testReverseIterator(mstack);
   if (testCase == 2) testConstIterator(mstack);
+  if (testCase == 3) testGivenMain();
 	return (0);
 }
